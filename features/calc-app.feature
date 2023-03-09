@@ -4,8 +4,8 @@ Feature: Calc App
 
 	Background: Frontend Calc App
 		Given I visit the calculator app page	
-        When I enter an integer value in num1 
-        When I enter an integer value in num2 
+        When I enter a number in num1
+        When I enter a number in num2
 
 	Example: Add 
 		When I click the add button
