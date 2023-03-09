@@ -1,5 +1,13 @@
 const { Given, When, Then, Before, After } = require("@cucumber/cucumber");
 const assert = require('assert');
+const { By } = require("selenium-webdriver");
+const webdriver = require('selenium-webdriver');
+require('chromedriver');
+let driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    // .setChromeOptions(/* ... */)
+    // .setFirefoxOptions(/* ... */)
+    .build();
 
 const Calculator = require("../../lib/calc");
 
@@ -36,16 +44,15 @@ Then('result is {int}', function (result) {
 });
 
 Given('I visit the calculator app page', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+    // await driver.get(url);
 });
 
 When('I add num1 and num2', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+    // name is deprecated?
+    // await driver.findElement(By.name('q')).sendKeys('search value' + '\n')
 });
 
 Then('the result of num1 added to num2 is displayed', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+    // let text = await driver.findElement(By.id('search')).getText()
+    // console.log(text);
 });
