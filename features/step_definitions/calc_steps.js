@@ -47,11 +47,11 @@ Given('I visit the calculator app page', async () => {
     await driver.get('http://207.154.255.199:4300/');
 });
 
-// When('When I click add button',{timeout: 60 * 1000}, async () => {
-//     // name is deprecated?
-//     // await driver.findElement(By.name('q')).sendKeys('search value' + '\n')
-//     await driver.findElement(By.id('addition')).sendKeys('\n')
-// });
+When('When I click add button',{timeout: 60 * 1000}, async () => {
+    // name is deprecated?
+    // await driver.findElement(By.name('q')).sendKeys('search value' + '\n')
+    await driver.findElement(By.id('addition')).sendKeys('\n')
+});
 
 // Then('the result of num1 added to num2 is displayed', async () => {
 //     // let text = await driver.findElement(By.id('search')).getText()
