@@ -1,6 +1,6 @@
 Feature: Calc
 
-	Basic calculator application tested with BDD.
+	Basic calculator application tested with BDD - Cucumber.
 
 	Background: Operands
 		Given the numbers 12 and 6	
