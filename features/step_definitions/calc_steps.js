@@ -1,25 +1,21 @@
 const { Given, When, Then, Before, After } = require("@cucumber/cucumber");
 const assert = require('assert');
-const { By } = require("selenium-webdriver");
+const { By, Key } = require("selenium-webdriver");
 const webdriver = require('selenium-webdriver');
 require('chromedriver');
+let driver = driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    .build();
 const { setDefaultTimeout } = require('@cucumber/cucumber');
 setDefaultTimeout(60 * 1000);
 
 const Calculator = require("../../lib/calc");
 
-let driver;
-Before(function () {
-    driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    // .setChromeOptions(/* ... */)
-    // .setFirefoxOptions(/* ... */)
-    .build();
-})
+// Before(function () {
+// })
 
-After(function () {
-    driver.quit();
-})
+// After(function () {
+// })
 
 Given ('the numbers {int} and {int}', function (x, y) {
     calculator = new Calculator(x, y)
@@ -47,4 +43,22 @@ Then('result is {int}', function (result) {
 
 Given('I visit the calculator app page', async () => {
     await driver.get('http://207.154.255.199:4300/');
+});
+
+When('I enter a number in num1', async () => {
+    let num1 = await driver.findElement(By.id('num1'))
+    num1.sendKeys(Key.ENTER, "4", Key.NULL)
+});
+
+When('I enter a number in num2', async () => {
+    let num2 = await driver.findElement(By.id('num2'))
+    num2.sendKeys(Key.ENTER, "4", Key.NULL)
+});
+
+When('I click the add button', asyc () => {
+    
+});
+
+Then('the result of num1 added to num2 is displayed', async () => {
+    
 });
