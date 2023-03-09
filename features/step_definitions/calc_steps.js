@@ -18,7 +18,7 @@ Before(function () {
 })
 
 After(function () {
-    driver.quit();
+    console.log('End of steps');
 })
 
 Given ('the numbers {int} and {int}', function (x, y) {
@@ -51,12 +51,12 @@ Given('I visit the calculator app page',{timeout: 60 * 1000}, async () => {
 
 When('I enter a number in num1',{timeout: 60 * 1000}, async () => {
     let num1 = await driver.findElement(By.id('num1'))
-    num1.sendKeys(Key.ENTER, "4", Key.NULL)
+    num1.sendKeys(Key.ENTER, "4")
 });
 
 When('I enter a number in num2',{timeout: 60 * 1000}, async () => {
     let num2 = await driver.findElement(By.id('num2'))
-    num2.sendKeys(Key.ENTER, "4", Key.NULL)
+    num2.sendKeys(Key.ENTER, "4")
 });
 
 When('I click the add button',{timeout: 60 * 1000}, async () => {
