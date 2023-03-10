@@ -1,25 +1,12 @@
 const { Given, When, Then, Before, After } = require("@cucumber/cucumber");
 const assert = require('assert');
-const { By, Key } = require("selenium-webdriver");
-const webdriver = require('selenium-webdriver');
-require('chromedriver');
-// const { setDefaultTimeout } = require('@cucumber/cucumber');
-// setDefaultTimeout(60 * 1000);
+const {Builder, By, Key} = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
+
+const service = new chrome.ServiceBuilder('./driver/chromedriver');
+const driver = new Builder().forBrowser('chrome').setChromeService(service).build();
 
 const Calculator = require("../../lib/calc");
-
-let driver;
-Before(function () {
-    driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    // .setChromeOptions(/* ... */)
-    // .setFirefoxOptions(/* ... */)
-    .build();
-})
-
-After(function () {
-    console.log('End of steps');
-})
 
 Given ('the numbers {int} and {int}', function (x, y) {
     calculator = new Calculator(x, y)
@@ -45,27 +32,32 @@ Then('result is {int}', function (result) {
     assert.equal(calculator.getResult(), result)
 });
 
-Given('I visit the calculator app page',{timeout: 60 * 1000}, async () => {
-    await driver.get('http://207.154.255.199:4300/');
+Given('the user visits the calc web-page on {string}', {timeout: 50 * 1000}, async (url) => {
+    await driver.get(url);
 });
 
-When('I enter a number in num1',{timeout: 60 * 1000}, async () => {
-    let num1 = await driver.findElement(By.id('num1'))
-    num1.sendKeys(Key.ENTER, "4")
+When('user inputs num1 {int}',{timeout: 50 * 1000}, async (num1) => {
+    let textBox = await driver.findElement(By.name('num1'));
+    await textBox.sendKeys(num1);
 });
 
-When('I enter a number in num2',{timeout: 60 * 1000}, async () => {
-    let num2 = await driver.findElement(By.id('num2'))
-    num2.sendKeys(Key.ENTER, "4")
+When('user inputs operand {string}',{timeout: 70 * 1000}, async (operand) => {
+    let textBox = await driver.findElement(By.name('operand'));
+    await textBox.sendKeys(operand);
 });
 
-When('I click the add button',{timeout: 60 * 1000}, async () => {
-    let addButton = await driver.findElement(By.id('addition'))
-    addButton.click()
+When('user inputs num2 {int}',{timeout: 90 * 1000}, async (num2) => {
+    let textBox = await driver.findElement(By.name('num2'));
+    await textBox.sendKeys(num2);
 });
 
-Then('the result of num1 added to num2 is displayed',{timeout: 60 * 1000}, async () => {
-    let result = await driver.findElement(By.id('result'))
-    result.getText()
-    console.log(result);
+When('user clicks submit button', { timeout: 100 * 1000 }, async () => {
+    let submitButton = await driver.findElement(By.name('calculate'));
+    await submitButton.sendKeys("webdriver", Key.ENTER);
+});
+
+Then('the display answer is {int}', { timeout: 120 * 1000 }, async (answer) => {
+    let textBox = await driver.findElement(By.name('result'));
+    let value = await textBox.getText();
+    console.log("Value is: ", value);
 });

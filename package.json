@@ -2,8 +2,10 @@
   "name": "cucumber",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "cucumber-js -f @cucumber/pretty-formatter"
   },
   "keywords": [],
@@ -11,10 +13,14 @@
   "license": "ISC",
   "devDependencies": {
     "@cucumber/cucumber": "^9.0.0",
-    "@cucumber/pretty-formatter": "^1.0.0"
+    "@cucumber/pretty-formatter": "^1.0.0",
+    "nodemon": "^2.0.21"
   },
   "dependencies": {
     "chromedriver": "^110.0.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "pug": "^3.0.2",
     "selenium-webdriver": "^4.8.1"
   }
 }

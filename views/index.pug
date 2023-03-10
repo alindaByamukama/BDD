@@ -1,0 +1,44 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Simple Calculator
+  link(rel='stylesheet' href='Bootstraps/css/bootstrap.css')
+  link(rel='stylesheet' href='style.css')
+form(action='/' name='transactionentry' method="POST")
+  .container
+    .card
+      h3 Simple Calc v0.1
+      .card-body
+        b
+        if !result 
+        -  result = 0
+        if !operand
+        -  operand = ''
+        form(action='/' method='post')
+        .container
+          .row
+            .col-sm
+              label(for='result') Result:
+              br
+              input#result(type='text' name='result' value=`${result}`)
+            .col-sm
+              label(for='num1') First Input:
+              br
+              input#num1(type='number' name='num1' placeholder='Number' value=`${num1}`)
+            .col-sm
+              label(for='operand') Operand:
+              br
+              input#num1(type='text' name='operand' placeholder='Operand' value=`${operand}`)
+            .col-sm
+              label(for='num2') Second Input:
+              br
+              input#num2(type='number' name='num2' placeholder='Number' value=`${num2}`)
+            .col-sm
+              label(for='submit') Submit:
+              br
+              input#btn(type='submit' name='calculate', value='Calculate')
+  footer GROUP 1: Alinda, Wilfred, Dominic, Richard, Gerald.
+  script(src='./Bootstraps/js/bootstrap.js')
+  script(src='./js/script.js')
